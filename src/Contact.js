@@ -9,19 +9,17 @@ const Contact = () => {
 
     useEffect(() => {
         const initializeState = () => {
-            const initialState = {};
-            // Access form elements using `forminfo.current.elements`
-            for (const element of forminfo.current.elements) {
-                if (element.name) {
-                    initialState[element.name] = '';
-                }
-            }
+            const formElements = Array.from(forminfo.current.elements);
+            const initialState = Object.fromEntries(
+                formElements
+                    .filter((element) => element.name)
+                    .map((element) => [element.name, ''])
+            );
+
             setFormData(initialState);
-            console.log(formData)
         };
 
         initializeState();
-
     }, []);
 
 
@@ -56,6 +54,9 @@ const Contact = () => {
                         </textarea>
                     </li>
                 </ul>
+                <button onClick={() => {
+                    console.log(formData)
+                }}>보내기</button>
 
             </form>
         </div>
