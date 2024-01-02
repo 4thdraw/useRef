@@ -1,12 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import "./contact.scss";
 import "bootstrap/dist/css/bootstrap.css"
 import "@fontsource/noto-sans-kr"
 
 const Contact = () => {
+    const [formData, setFormData] = useState(null);
+    const forminfo = useRef(null);
+
+    useEffect(() => {
+        const initializeState = () => {
+            const initialState = {};
+            // Access form elements using `forminfo.current.elements`
+            for (const element of forminfo.current.elements) {
+                if (element.name) {
+                    initialState[element.name] = '';
+                }
+            }
+            setFormData(initialState);
+            console.log(formData)
+        };
+
+        initializeState();
+
+    }, []);
+
+
+
     return (
         <div className='contact bg-light py-5'>
-            <form action="#none" className='cominfo container'>
+            <form action="#none" className='cominfo container' ref={forminfo}>
                 <fieldset className='text-center'>필수 정보</fieldset>
                 <ul className='row my-3'>
                     <li className='col-12 mb-2'>
