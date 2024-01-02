@@ -1,0 +1,40 @@
+body,
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.form_member {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_member form {
+    width: 300px;
+}
+
+.form_member li {
+    margin: 1rem 0;
+    list-style: none;
+}
+
+.form_member input {
+    width: 300px;
+    margin-top: 0.5rem;
+}
+
+.form_member h2 {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.8rem;
+}
+
+.form_member [type="submit"] {
+    padding: 0.5rem 0.7rem;
+    background-color: rgb(91, 192, 91);
+    border: 0;
+    color: white;
+    border-radius: 0.2rem;
+}
