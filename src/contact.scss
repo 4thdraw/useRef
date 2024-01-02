@@ -1,0 +1,21 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+@mixin fontsetting {
+    font-family: 'Noto Sans KR';
+    font-size: "22px";
+    line-height: 1.8;
+    font-weight: 100;
+}
+
+.contact * {
+    margin: 0;
+    padding: 0;
+    @include fontsetting;
+}
