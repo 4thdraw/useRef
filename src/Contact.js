@@ -2,28 +2,25 @@ import React, { useEffect, useState, useRef } from 'react'
 import "./contact.scss";
 import "bootstrap/dist/css/bootstrap.css"
 import "@fontsource/noto-sans-kr"
-
 const Contact = () => {
     const [formData, setFormData] = useState(null);
     const forminfo = useRef(null);
-
-    useEffect(() => {
-        const initializeState = () => {
-            const formElements = Array.from(forminfo.current.elements);
+    useEffect(() => {     
+        const initializeState = () => {           
+            const formElements = Array.from(forminfo.current.elements);   
+            // form안의 input들을 나열한 것이 정렬은 아니므로 (노드리스트일뿐 정렬형데이터 ) 진짜 정렬로 전환하기
             const initialState = Object.fromEntries(
                 formElements
-                    .filter((element) => element.name)
-                    .map((element) => [element.name, ''])
+                    .filter((element) => element.name)  // input name이 없는 요소는 없애고 다시 수집                 
+                    .map((element) => [element.name, ''])  // 앞에는 이름, 뒤에는 값으로 만들어진 array 내보내면            
             );
-
+            //Object.fromEntries 가 앞자리는 key 뒷자리는 값으로 해서 object로 만들어줌
             setFormData(initialState);
+            //input name들을 수집해서 useState 변수를 업데이트해줌
+            //input들에 name만 넣어서 retrun식에 넣어주면 알아서 useState상태변수에 추가가 되도록 됨
         };
-
         initializeState();
     }, []);
-
-
-
     return (
         <div className='contact bg-light py-5'>
             <form action="#none" className='cominfo container' ref={forminfo}>
@@ -57,10 +54,8 @@ const Contact = () => {
                 <button onClick={() => {
                     console.log(formData)
                 }}>보내기</button>
-
             </form>
         </div>
-
     )
 }
 
